@@ -45,7 +45,10 @@
     NSString *sGroupPropertyName = (NSString *)[self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
     if ([sGroupPropertyName isEqualToString:@"Camera Roll"]) {
         return @"相机胶卷";
+    }else if([sGroupPropertyName isEqualToString:@"My Photo Stream"]){
+        return @"我的照片流";
     }
+    
     return sGroupPropertyName;
     
 }

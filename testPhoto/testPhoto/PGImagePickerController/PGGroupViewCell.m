@@ -100,7 +100,7 @@
     CGFloat line_Y = self.frame.size.height - 1;
     CGFloat line_X = 5;
     CGFloat line_H = 1;
-    CGFloat line_W = (self.frame.size.width - 2*line_X)/2.0;
+    CGFloat line_W = self.frame.size.width - 2*line_X;
     _linView.frame = CGRectMake(line_X, line_Y, line_W, line_H);
     
 }

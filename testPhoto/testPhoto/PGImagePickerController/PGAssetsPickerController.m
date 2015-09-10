@@ -10,9 +10,11 @@
 #import "PGAssetsViewCell.h"
 #import "PGGroupPikcerView.h"
 #import "PGAlbums.h"
+#import "UIButton+BackColor.h"
 
 #define kThumbnailSize      CGSizeMake(kThumbnailLength, kThumbnailLength)
 #define kAssetsViewCellIdentifier           @"PGAssetsViewCellIdentifier"
+#define Color(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 typedef void (^voidBlock)(void);
 
 @interface PGAssetsPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UINavigationControllerDelegate>
@@ -86,6 +88,11 @@ typedef void (^voidBlock)(void);
 }
 
 - (void)initLayout{
+    
+    //btnDone按钮状态
+    [self.btnDone setBackgroundColor:Color(238, 238, 238, 1) forState:UIControlStateNormal];
+    [self.btnDone setBackgroundColor:Color(255, 255, 255, 1) forState:UIControlStateHighlighted];
+    
     //某一个相册的所有照片
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = kThumbnailSize;
@@ -124,8 +131,12 @@ typedef void (^voidBlock)(void);
 
 - (void)changeGroup:(NSInteger)item filter:(ALAssetsFilter *)filter{
     self.assetsFilter = filter;
-    PGAlbums *tempalbums = [[PGAlbums alloc] initWithAssetsGroup:self.groups[item]];
+    PGAlbums *tempalbums = (PGAlbums *)self.groups[item];
     self.albums = tempalbums;
+    [self initAssets:nil];
+    [self.groupPickerView.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:item inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [self.groupPickerView dismiss:YES];
+    [self menuArrowRotate];
 }
 
 - (void)menuArrowRotate{
@@ -146,7 +157,8 @@ typedef void (^voidBlock)(void);
     }
     
     if (!self.albums) {
-        PGAlbums *tempAblums = [[PGAlbums alloc] initWithAssetsGroup:self.groups[0]];
+        
+        PGAlbums *tempAblums = (PGAlbums *)self.groups[0];
         self.albums = tempAblums;
     }
     [self.albums setFilter:self.assetsFilter];
@@ -282,22 +294,22 @@ typedef void (^voidBlock)(void);
                     PGAlbums *tempAlbums = [[PGAlbums alloc] initWithAssetsGroup:group];
                     weakSelf.albums = tempAlbums;
                     [weakSelf initAssets:nil];
-                }else{
-                    if (group.numberOfAssets > 0) {
-                        PGAlbums *tempAlbums = [[PGAlbums alloc] initWithAssetsGroup:group];
-                        weakSelf.albums = tempAlbums;
-                        [weakSelf.groups addObject:tempAlbums];
-                    }
                 }
             }else{
-              dispatch_async(dispatch_get_main_queue(), ^{
-                  [weakSelf.groupPickerView reloadData];
-                  if (endBlock) {
-                      endBlock();
-                  }
-              });
-                
+                if (group.numberOfAssets > 0) {
+                    PGAlbums *tempAlbums = [[PGAlbums alloc] initWithAssetsGroup:group];
+                    weakSelf.albums = tempAlbums;
+                    [weakSelf.groups addObject:tempAlbums];
+                }
             }
+            
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.groupPickerView reloadData];
+                if (endBlock) {
+                    endBlock();
+                }
+            });
             
         }
     };
@@ -331,7 +343,7 @@ typedef void (^voidBlock)(void);
 
 #pragma mark - CollectionView Delegate
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    return [collectionView indexPathsForSelectedItems].count < self.maxinumNumberOfSelectionPhoto;
+    return [collectionView indexPathsForSelectedItems].count < self.maximumNumberOfSelection;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

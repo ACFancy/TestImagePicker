@@ -58,107 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463577471.250122"
+            timestampString = "463581575.955583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "-btnTitleAction:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGGroupPikcerView.m"
-            timestampString = "463576236.446316"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-toggle"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGGroupPikcerView.m"
-            timestampString = "463576236.446316"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-show"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGGroupPikcerView.m"
-            timestampString = "463576236.446316"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-show"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PGGroupPikcerView show]"
-                  moduleName = "testPhoto"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ianc/LS/testPhoto/testPhoto/PGImagePickerController/PGGroupPikcerView.m"
-                  timestampString = "463577232.458611"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__25-[PGGroupPikcerView show]_block_invoke"
-                  moduleName = "testPhoto"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ianc/LS/testPhoto/testPhoto/PGImagePickerController/PGGroupPikcerView.m"
-                  timestampString = "463577232.45873"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "32">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463577471.250122"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
             landmarkName = "-btnDoneAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463577471.250122"
+            timestampString = "463581575.955583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
             landmarkName = "-finishPickingAssets"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,43 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463576875.241566"
+            timestampString = "463581575.955583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-initVariable"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463576875.241566"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-initLayout"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463576875.241566"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "-changeGroup:filter:"
             landmarkType = "5">
          </BreakpointContent>
@@ -233,28 +105,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGGroupPikcerView.m"
-            timestampString = "463576524.417627"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "-initGroups:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463576875.241566"
+            timestampString = "463581575.955583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-initLayout"
             landmarkType = "5">
             <Locations>
@@ -266,7 +122,7 @@
                   moduleName = "testPhoto"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ianc/LS/testPhoto/testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-                  timestampString = "463577232.463692"
+                  timestampString = "463581019.136995"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -281,7 +137,7 @@
                   moduleName = "testPhoto"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ianc/LS/testPhoto/testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-                  timestampString = "463577232.463805"
+                  timestampString = "463581019.137121"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "116"
@@ -298,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463576875.241566"
+            timestampString = "463581575.955583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "-initLayout"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,27 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463576875.241566"
+            timestampString = "463581575.955583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
-            landmarkName = "-setupGroup:withSetupAsset:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463576851.099244"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
             <Locations>
@@ -346,7 +186,7 @@
                   moduleName = "testPhoto"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ianc/LS/testPhoto/testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-                  timestampString = "463577232.465154"
+                  timestampString = "463581019.139665"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -361,7 +201,7 @@
                   moduleName = "testPhoto"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ianc/LS/testPhoto/testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-                  timestampString = "463577232.465259"
+                  timestampString = "463581019.139815"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "75"
@@ -378,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
-            timestampString = "463576852.383185"
+            timestampString = "463581575.955583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -393,13 +233,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "testPhoto/PGImagePickerController/PGAlbums.m"
-            timestampString = "463577228.840009"
+            filePath = "testPhoto/PGImagePickerController/PGAssetsPickerController.m"
+            timestampString = "463581575.955583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "-posterCGImage"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-initAssets:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "testPhoto/PGImagePickerController/PGAlbums.m"
+            timestampString = "463581729.925729"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-setFilter:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
