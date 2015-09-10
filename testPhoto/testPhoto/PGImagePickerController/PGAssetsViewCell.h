@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PGAsset.h"
+#define kThumbnailLength    78.0f
+
 @interface PGAssetsViewCell : UICollectionViewCell
 
 - (void)applyData:(PGAsset *)asset;

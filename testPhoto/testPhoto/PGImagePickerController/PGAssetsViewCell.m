@@ -8,8 +8,6 @@
 
 #import "PGAssetsViewCell.h"
 
-#define kThumbnailLength    78.0f
-
 @interface PGAssetsViewCell ()
 
 @property (nonatomic, strong) PGAsset *asset;
@@ -24,8 +22,8 @@ static UIImage *uncheckedIcon;
 static UIColor *selectedColor;
 
 + (void)initialize{
-    checkedIcon = [UIImage imageNamed:@"PGAssetPickerController.bundle/pg_icon_chk_normal.png"];
-    uncheckedIcon = [UIImage imageNamed:@"PGAssetPickerController.bundle/pg_icon_chk_active.png"];
+    checkedIcon = [UIImage imageNamed:@"PGAssetPickerController.bundle/pg_icon_chk_active.png"];
+    uncheckedIcon = [UIImage imageNamed:@"PGAssetPickerController.bundle/pg_icon_chk_normal.png"];
     selectedColor = [UIColor colorWithWhite:1 alpha:0.3];
 }
 

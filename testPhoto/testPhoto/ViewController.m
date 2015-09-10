@@ -12,10 +12,11 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "WPS/WPSViewController.h"
 #import "LvAssetsPickerController.h"
+#import "PGAssetsPickerController.h"
 
 #define COLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
-@interface ViewController ()<UIImagePickerControllerDelegate,LvAssetsPickerControllerDelegate>{
+@interface ViewController ()<UIImagePickerControllerDelegate,LvAssetsPickerControllerDelegate,PGAssetsPickerControllerDelegate>{
     UIControl *_overLayout;
     UIView *_takePhotoView;
     UIImage *_selectedImage;
@@ -217,17 +218,27 @@
 //    picker.allowsEditing = NO;
 //    
 //    [self presentViewController:picker animated:YES completion:nil];
-    LvAssetsPickerController *picker = [[LvAssetsPickerController alloc] init];
-    picker.maximumNumberOfSelectionPhoto = 3;
-    picker.maximumNumberOfSelectionVideo = 0;
-    picker.maximumNumberOfSelectionMedia = 0;
-    picker.delegate  = self;
+//    LvAssetsPickerController *picker = [[LvAssetsPickerController alloc] init];
+//    picker.maximumNumberOfSelectionPhoto = 3;
+//    picker.maximumNumberOfSelectionVideo = 0;
+//    picker.maximumNumberOfSelectionMedia = 0;
+//    picker.delegate  = self;
+//    [self presentViewController:picker animated:YES completion:nil];
+    
+    PGAssetsPickerController *picker = [[PGAssetsPickerController alloc] init];
+    picker.maxinumNumberOfSelectionPhoto = 3;
+    picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
     
 }
 
 #pragma mark - LvAssetsPickerController
 - (void)LvAssetsPickerController:(LvAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+    NSLog(@"YES");
+}
+
+#pragma mark - PGAssetPickerController Delegate
+- (void)PGAssetsPickerController:(PGAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
     NSLog(@"YES");
 }
 

@@ -60,6 +60,7 @@
     self.tableView.delegate = self;
     self.tableView.rowHeight = kPGGroupViewCellHeight;
     [self addSubview:self.tableView];
+    self.tableView.backgroundColor = [UIColor greenColor];
     
 }
 

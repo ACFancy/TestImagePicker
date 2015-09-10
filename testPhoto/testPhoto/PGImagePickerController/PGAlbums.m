@@ -42,7 +42,7 @@
     if (!self.assetsGroup) {
         return nil;
     }
-    NSString *sGroupPropertyName = (NSString *)[self.assetsGroup valueForKey:ALAssetsGroupPropertyName];
+    NSString *sGroupPropertyName = (NSString *)[self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
     if ([sGroupPropertyName isEqualToString:@"Camera Roll"]) {
         return @"相机胶卷";
     }

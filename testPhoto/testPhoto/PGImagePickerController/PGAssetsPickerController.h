@@ -7,7 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+@class PGAssetsPickerController;
+@protocol PGAssetsPickerControllerDelegate <NSObject>
+
+- (void)PGAssetsPickerController:(PGAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets;
+@optional
+- (void)PGAssetsPickerControllerDidCancel:(PGAssetsPickerController *)picker;
+
+@end
 
 @interface PGAssetsPickerController : UIViewController
+
+@property (nonatomic, strong)ALAssetsFilter *assetsFilter;
+@property (nonatomic, assign) NSInteger maxinumNumberOfSelectionPhoto;
+
+@property (nonatomic, weak)id <PGAssetsPickerControllerDelegate> delegate;
+
++ (ALAssetsLibrary *)defaultAssetsLibrary;
 
 @end
