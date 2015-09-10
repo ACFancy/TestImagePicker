@@ -24,6 +24,13 @@
     return [UIImage imageWithCGImage:[self.assetsGroup posterImage]];
 }
 
+- (CGImageRef)posterCGImage{
+    if (!self.assetsGroup) {
+        return nil;
+    }
+    return [self.assetsGroup posterImage];
+}
+
 - (NSInteger)totalCount{
     if (!self.assetsGroup) {
         return 0;

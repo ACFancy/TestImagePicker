@@ -31,6 +31,8 @@
 /* 相册的缩略图 */
 @property (nonatomic, readonly, strong) UIImage *posterImage;
 
+@property (nonatomic, readonly) CGImageRef posterCGImage;
+
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)aGroup;
 
 - (BOOL)isEqual:(PGAlbums *)aAlbums;

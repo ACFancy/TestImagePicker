@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PGAlbums.h"
 
 @interface PGGroupViewCell : UITableViewCell
+
+@property (nonatomic, strong)PGAlbums *albums;
+
+- (void)applyData:(PGAlbums *)albums;
 
 @end

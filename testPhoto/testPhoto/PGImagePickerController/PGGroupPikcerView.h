@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^intBlock)(NSInteger);
+
 @interface PGGroupPikcerView : UIView
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *groups;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+@property (nonatomic, copy) intBlock blockTouchCell;
+@property (nonatomic, assign) BOOL isOpen;
+
+- (instancetype)initGroups:(NSMutableArray *)groups;
+
+- (void)show;
+- (void)dismiss:(BOOL)animated;
+- (void)toggle;
+- (void)reloadData;
 
 @end

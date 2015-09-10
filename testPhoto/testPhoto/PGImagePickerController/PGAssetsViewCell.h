@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PGAsset.h"
 @interface PGAssetsViewCell : UICollectionViewCell
+
+- (void)applyData:(PGAsset *)asset;
 
 @end

@@ -21,6 +21,7 @@
 		3DAD1C471BA12F48006FF49E /* PGGroupPikcerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD1C461BA12F48006FF49E /* PGGroupPikcerView.m */; };
 		3DAD1C4A1BA12F7F006FF49E /* PGGroupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD1C491BA12F7F006FF49E /* PGGroupViewCell.m */; };
 		3DAD1C4D1BA12FCB006FF49E /* PGAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD1C4C1BA12FCB006FF49E /* PGAssetsViewCell.m */; };
+		3DAD1C701BA1622A006FF49E /* PGAssetPickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DAD1C6F1BA1622A006FF49E /* PGAssetPickerController.bundle */; };
 		3DE395AD1B9FD4A10086AE7C /* UIButton+BackColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE395AC1B9FD4A10086AE7C /* UIButton+BackColor.m */; };
 		3DE395B01BA000A10086AE7C /* WPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE395AF1BA000A10086AE7C /* WPSViewController.m */; };
 		3DE395B51BA002990086AE7C /* friend_add_img_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DE395B41BA002990086AE7C /* friend_add_img_icon.png */; };
@@ -75,6 +76,7 @@
 		3DAD1C491BA12F7F006FF49E /* PGGroupViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGGroupViewCell.m; sourceTree = "<group>"; };
 		3DAD1C4B1BA12FCB006FF49E /* PGAssetsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAssetsViewCell.h; sourceTree = "<group>"; };
 		3DAD1C4C1BA12FCB006FF49E /* PGAssetsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAssetsViewCell.m; sourceTree = "<group>"; };
+		3DAD1C6F1BA1622A006FF49E /* PGAssetPickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PGAssetPickerController.bundle; sourceTree = "<group>"; };
 		3DE395AB1B9FD4A10086AE7C /* UIButton+BackColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BackColor.h"; sourceTree = "<group>"; };
 		3DE395AC1B9FD4A10086AE7C /* UIButton+BackColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BackColor.m"; sourceTree = "<group>"; };
 		3DE395AE1BA000A10086AE7C /* WPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPSViewController.h; path = WPS/WPSViewController.h; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		3DAD1C391BA1134C006FF49E /* PGImagePickerController */ = {
 			isa = PBXGroup;
 			children = (
+				3DAD1C6F1BA1622A006FF49E /* PGAssetPickerController.bundle */,
 				3DAD1C3A1BA11370006FF49E /* PGAlbums.h */,
 				3DAD1C3B1BA11370006FF49E /* PGAlbums.m */,
 				3DAD1C3D1BA116F5006FF49E /* PGAsset.h */,
@@ -353,6 +356,7 @@
 				3DE395C01BA044CC0086AE7C /* top_bar_big.png in Resources */,
 				3DE395B51BA002990086AE7C /* friend_add_img_icon.png in Resources */,
 				3DE395BB1BA042C70086AE7C /* LvAssetsPickerController.xib in Resources */,
+				3DAD1C701BA1622A006FF49E /* PGAssetPickerController.bundle in Resources */,
 				3D0801601B9FC5F200651252 /* Images.xcassets in Resources */,
 				3DAD1C411BA12D59006FF49E /* PGAssetsPickerController.xib in Resources */,
 			);
