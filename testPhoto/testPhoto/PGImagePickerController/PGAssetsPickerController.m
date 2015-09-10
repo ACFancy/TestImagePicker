@@ -17,7 +17,7 @@
 #define Color(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 typedef void (^voidBlock)(void);
 
-@interface PGAssetsPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UINavigationControllerDelegate>
+@interface PGAssetsPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UINavigationControllerDelegate,PGGroupPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *imageTitleView;
 @property (weak, nonatomic) IBOutlet UIView *navigationTopView;
@@ -119,6 +119,7 @@ typedef void (^voidBlock)(void);
     //相册选择图表视图
     __weak typeof(self) weakSelf = self;
     self.groupPickerView = [[PGGroupPikcerView alloc] initGroups:self.groups];
+    self.groupPickerView.delegate = self;
     self.groupPickerView.blockTouchCell = ^(NSInteger row){
         [weakSelf changeGroup:row filter:weakSelf.assetsFilter];
     };
@@ -352,6 +353,11 @@ typedef void (^voidBlock)(void);
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
+}
+
+#pragma mark - PGGroupPickerView Delegate
+- (void)needToRotateMenu{
+    [self menuArrowRotate];
 }
 
 #pragma mark - Private Method

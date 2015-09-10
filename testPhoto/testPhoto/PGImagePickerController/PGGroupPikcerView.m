@@ -16,7 +16,7 @@
 #define Color(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 
-@interface PGGroupPikcerView ()<UITableViewDataSource,UITableViewDelegate>
+@interface PGGroupPikcerView ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
 @end
 
@@ -50,6 +50,8 @@
     UITapGestureRecognizer *selfTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(otherDismissAction:)];
     selfTap.numberOfTouchesRequired = 1;
     selfTap.numberOfTapsRequired = 1;
+    selfTap.cancelsTouchesInView = NO;
+    selfTap.delegate = self;
     [self addGestureRecognizer:selfTap];
     
     //tableView的设置
@@ -152,15 +154,31 @@
 
 #pragma mark - Action
 - (void)otherDismissAction:(UITapGestureRecognizer *)tapGesture{
-    if(CGRectContainsPoint(self.frame, [tapGesture locationInView:self])){
         CGPoint touchPoint = [tapGesture locationInView:self];
         if (touchPoint.y >(SCREEN_HEIGHT*2/3.0) ) {
             [self dismiss:YES];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(needToRotateMenu)]) {
+                [self.delegate needToRotateMenu];
+            }
         }
+}
 
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+//    CGPoint currentPoint = [gestureRecognizer locationInView:self];
+//    CGRect newFrame = self.frame;
+//    newFrame.origin.y = SCREEN_HEIGHT*2/3.0;
+//    if (CGRectContainsPoint(newFrame, currentPoint)) {
+//        return  YES;
+//    }
+//    return  NO;
+//}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if ([touch.view isKindOfClass:[UITableView class]]) {
+        return NO;
+    }else{
+        return YES;
     }
-    
-    
 }
 
 

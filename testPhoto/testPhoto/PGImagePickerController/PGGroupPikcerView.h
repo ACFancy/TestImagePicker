@@ -10,6 +10,13 @@
 
 typedef void (^intBlock)(NSInteger);
 
+@protocol PGGroupPickerViewDelegate <NSObject>
+
+@optional
+- (void)needToRotateMenu;
+
+@end
+
 @interface PGGroupPikcerView : UIView
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -17,6 +24,7 @@ typedef void (^intBlock)(NSInteger);
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property (nonatomic, copy) intBlock blockTouchCell;
 @property (nonatomic, assign) BOOL isOpen;
+@property (nonatomic, assign) id <PGGroupPickerViewDelegate> delegate;
 
 - (instancetype)initGroups:(NSMutableArray *)groups;
 
