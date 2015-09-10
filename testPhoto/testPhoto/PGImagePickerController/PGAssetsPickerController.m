@@ -226,7 +226,7 @@ typedef void (^voidBlock)(void);
                         PGAsset *tempAsset = self.assets[0];
                         if ([[[tempAsset.containAsset valueForKey:ALAssetPropertyAssetURL] absoluteString] isEqualToString:[[asset valueForKey:ALAssetPropertyAssetURL] absoluteString]]) {
                             NSIndexPath *newPath = [NSIndexPath indexPathForRow:0 inSection:0];
-                            [self.collectionView selectItemAtIndexPath:newPath animated:notification scrollPosition:UICollectionViewScrollPositionNone];
+                            [self.collectionView selectItemAtIndexPath:newPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
                             [self setAssetsCountWithSelectedIndexPaths:self.collectionView.indexPathsForSelectedItems];
                         }
                     });
