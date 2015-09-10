@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="thC-NW-w53">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--What-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="What" id="V37-af-NLt">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="camera" id="Wab-ri-4Uz">
+                            <connections>
+                                <action selector="cameraAction:" destination="vXZ-lx-hvc" id="ltm-go-g0I"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraBtn" destination="Wab-ri-4Uz" id="7Ey-TN-ddv"/>
+                        <segue destination="H3x-AZ-SRA" kind="show" identifier="toWPSSegue" id="c08-aY-8LU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1375.5" y="405"/>
+        </scene>
+        <!--WPS-->
+        <scene sceneID="cbG-Jc-MKd">
+            <objects>
+                <viewController id="H3x-AZ-SRA" customClass="WPSViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HOB-o2-EGD"/>
+                        <viewControllerLayoutGuide type="bottom" id="OiR-6P-Ypa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WQV-fl-GLd">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_add_img_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="iTS-gk-Tt5">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="30" y="93" width="62" height="62"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_add_img_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Os-N1-ymc">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="105" y="93" width="62" height="62"/>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_add_img_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="9FC-hp-9mC">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="181" y="93" width="62" height="62"/>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="iTS-gk-Tt5"/>
+                                <exclude reference="4Os-N1-ymc"/>
+                                <exclude reference="9FC-hp-9mC"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="iTS-gk-Tt5"/>
+                                <include reference="4Os-N1-ymc"/>
+                                <include reference="9FC-hp-9mC"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="WPS" id="DLV-WF-sQT">
+                        <barButtonItem key="leftBarButtonItem" title="back" id="VVz-Dm-d2b">
+                            <color key="tintColor" red="0.96779392480000004" green="0.35730516420000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backAction:" destination="H3x-AZ-SRA" id="O66-Fd-LGK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outletCollection property="imageViews" destination="iTS-gk-Tt5" id="L5g-uR-RaB"/>
+                        <outletCollection property="imageViews" destination="4Os-N1-ymc" id="WNw-UF-0Ys"/>
+                        <outletCollection property="imageViews" destination="9FC-hp-9mC" id="Ilg-qR-SPP"/>
+                        <segue destination="XEr-l8-H9j" kind="show" identifier="toImagesSegue" id="d8k-T4-agH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="izK-bd-ZHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2071.5" y="405"/>
+        </scene>
+        <!--Images View Controller-->
+        <scene sceneID="kII-w7-fAr">
+            <objects>
+                <viewController id="XEr-l8-H9j" customClass="ImagesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W3E-dr-x7i"/>
+                        <viewControllerLayoutGuide type="bottom" id="FzG-cq-rqq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aof-GG-eiK">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kbu-ft-qVs">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Kbu-ft-qVs"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Kbu-ft-qVs"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="scrollView" destination="Kbu-ft-qVs" id="eq5-I7-jRb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iPG-wa-pkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2850" y="405"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NFT-7L-T9M">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="thC-NW-w53" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rVd-nF-OOW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="I5o-Gi-U7O"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H8E-Nm-yuw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="502.5" y="-288"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="friend_add_img_icon.png" width="124" height="124"/>
+    </resources>
+</document>
