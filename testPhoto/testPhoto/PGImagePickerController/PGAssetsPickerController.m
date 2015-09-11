@@ -144,13 +144,15 @@ typedef void (^voidBlock)(void);
     }else{
         self.assets = [NSMutableArray arrayWithArray:self.albums.assetsArray];
     }
-    
+
     [self.groupPickerView.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:item inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     [self.groupPickerView dismiss:YES];
+    [self.btnTitle setTitle:self.albums.name forState:UIControlStateNormal];
     [self menuArrowRotate];
     [self reloadData];
 }
 
+//翻转
 - (void)menuArrowRotate{
    [UIView animateWithDuration:0.35 animations:^{
        if (self.groupPickerView.isOpen) {
@@ -161,6 +163,7 @@ typedef void (^voidBlock)(void);
    } completion:nil];
 }
 
+//初始化某个相册中所有的照片
 - (void)initAssets:(voidBlock)successBlock{
     if (!self.assets) {
         self.assets = [NSMutableArray array];
@@ -200,8 +203,10 @@ typedef void (^voidBlock)(void);
     
 }
 
+//重载数据
 - (void)reloadData{
     [self.collectionView reloadData];
+    //设置在这之前是否有选中的cell
     if (selectedArray.count) {
         for (PGAssetPickerModel *model in selectedArray) {
             int i = 0;
@@ -301,6 +306,7 @@ typedef void (^voidBlock)(void);
     });
 }
 
+//初始化每个相册
 - (void)setupGroup:(voidBlock)endBlock withSetupAsset:(BOOL)doSetUpAsset{
     if (!self.assetsLibrary) {
         self.assetsLibrary = [self.class defaultAssetsLibrary];
@@ -319,8 +325,9 @@ typedef void (^voidBlock)(void);
     ALAssetsLibraryGroupsEnumerationResultsBlock resultBlock = ^(ALAssetsGroup *group, BOOL *stop){
         if (group) {
             [group setAssetsFilter:assetsFilter];
-            NSInteger groupType = [[group valueForProperty:ALAssetsGroupPropertyType] integerValue];
-            if (groupType == ALAssetsGroupSavedPhotos) {
+//            NSInteger groupType = [[group valueForProperty:ALAssetsGroupPropertyType] integerValue];
+            NSString *sGroupPropertyName = (NSString *)[group valueForProperty:ALAssetsGroupPropertyName];
+            if ([sGroupPropertyName isEqualToString:@"Camera Roll"]) {
                 PGAlbums *tempAlbums = [[PGAlbums alloc] initWithAssetsGroup:group];
                 
                 [weakSelf.groups insertObject:tempAlbums atIndex:0];
@@ -332,9 +339,9 @@ typedef void (^voidBlock)(void);
             }else{
                 if (group.numberOfAssets > 0) {
                     PGAlbums *tempAlbums = [[PGAlbums alloc] initWithAssetsGroup:group];
-                    weakSelf.albums = tempAlbums;
+//                    weakSelf.albums = tempAlbums;
                     [weakSelf.groups addObject:tempAlbums];
-                    [weakSelf initAssets:nil];
+//                    [weakSelf initAssets:nil];
                 }
             }
             
@@ -415,7 +422,7 @@ typedef void (^voidBlock)(void);
     }else{
         [selectedArray addObject:pgModel];
     }
-    
+    [self setAssetsCount];
 //    [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
 }
 
@@ -437,7 +444,7 @@ typedef void (^voidBlock)(void);
             }
         }
     }
-    
+    [self setAssetsCount];
 //    [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
 }
 
