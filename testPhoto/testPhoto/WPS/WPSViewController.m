@@ -10,6 +10,7 @@
 #import "UIButton+BackColor.h"
 #import  <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
+#import "ImagesViewController.h"
 #define COLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 @interface WPSViewController (){
@@ -41,34 +42,51 @@
         tap.numberOfTouchesRequired = 1;
         imgView.contentMode = UIViewContentModeScaleToFill;
         imgView.userInteractionEnabled = YES;
-        if (imgView.tag == 101) { //必须选一张
-            imgView.hidden = NO;
-            imgView.image = _sourceimages[0];
+        if (imgView.tag == 101) {
+            if (_sourceimages.count) {//有一张图片
+                imgView.hidden = NO;
+                imgView.image = _sourceimages[0];
+                tapSelector = @selector(previewChoosedPhotoAction:);
+                [tap addTarget:self action:tapSelector];
+            }else{                    //没有图片
+                tapSelector = @selector(choosePhotoAction);
+                [tap addTarget:self action:tapSelector];
+                imgView.hidden = NO;
+                imgView.image = [UIImage imageNamed:@"friend_add_img_icon.png"];
+            }
+           
         }else if(imgView.tag == 102){
             if (_sourceimages.count > 1) {  //选了一张以上图片
                 imgView.hidden = NO;
                 imgView.image = _sourceimages[1];
-            }else{         //选了一张图片
+                tapSelector = @selector(previewChoosedPhotoAction:);
+                [tap addTarget:self action:tapSelector];
+                
+            }else if(_sourceimages.count == 1){         //选了一张图片
                 tapSelector = @selector(choosePhotoAction);
                 [tap addTarget:self action:tapSelector];
-                [imgView addGestureRecognizer:tap];
                 imgView.hidden = NO;
+                imgView.image = [UIImage imageNamed:@"friend_add_img_icon.png"];
+            }else{
+                imgView.hidden = YES;
             }
            
         }else{
             if (_sourceimages.count > 2) { //选了三张图片
                 imgView.hidden = NO;
                 imgView.image = _sourceimages[2];
+                tapSelector = @selector(previewChoosedPhotoAction:);
+                [tap addTarget:self action:tapSelector];
             }else if(_sourceimages.count == 2){ //选了两张图片
                 tapSelector = @selector(choosePhotoAction);
                 [tap addTarget:self action:tapSelector];
-                [imgView addGestureRecognizer:tap];
                 imgView.hidden = NO;
+                imgView.image = [UIImage imageNamed:@"friend_add_img_icon.png"];
             }else{                       //选了一张或更少图片
                 imgView.hidden = YES;
             }
         }
-       
+       [imgView addGestureRecognizer:tap];
     }
 }
 
@@ -161,6 +179,16 @@
     }
 }
 
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"toImagesSegue"]) {
+        NSNumber *indexNum = (NSNumber *)sender;
+        ImagesViewController *imgVC = (ImagesViewController *)segue.destinationViewController;
+        imgVC.sourceImages = _sourceimages;
+        imgVC.currentIndex = [indexNum intValue];
+    }
+}
+
 #pragma mark - Action
 - (void)dismiss{
     if (_overLayout) {
@@ -248,6 +276,13 @@
         _takePhotoView.frame = newTakePhotoViewFrame;
     }];
     
+}
+
+- (void)previewChoosedPhotoAction:(UITapGestureRecognizer *)tapGes{
+    UIImageView *imageView = (UIImageView *)tapGes.view;
+    NSNumber *toIndex = [NSNumber numberWithInt:((int)imageView.tag - 101)];
+    
+    [self performSegueWithIdentifier:@"toImagesSegue" sender:toIndex];
 }
 
 - (IBAction)backAction:(UIBarButtonItem *)sender {

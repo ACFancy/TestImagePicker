@@ -229,7 +229,7 @@ typedef void (^voidBlock)(void);
 
 - (void)setAssetsCount{
     if (selectedArray.count) {
-            [self.btnDone setTitle:[NSString stringWithFormat:@"完成( %lu )",selectedArray.count] forState:UIControlStateNormal];
+            [self.btnDone setTitle:[NSString stringWithFormat:@"完成( %lu )",(unsigned long)selectedArray.count] forState:UIControlStateNormal];
     }else{
         [self.btnDone setTitle:@"完成" forState:UIControlStateNormal];
     }

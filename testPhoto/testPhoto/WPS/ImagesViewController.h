@@ -11,7 +11,7 @@
 @interface ImagesViewController : UIViewController
 
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
+@property (nonatomic, strong) NSMutableArray *sourceImages;
+@property (nonatomic, assign) int currentIndex;
 
 @end

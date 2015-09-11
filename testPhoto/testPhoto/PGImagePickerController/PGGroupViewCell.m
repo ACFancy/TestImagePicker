@@ -70,7 +70,7 @@
     float scale = height / kPGGroupViewCellHeight;
     _postImageView.image = [UIImage imageWithCGImage:posterImage scale:scale orientation:UIImageOrientationUp];
     _lblAlbumsName.text = albums.name;
-    _lblAblumsPhotoNum.text = [NSString stringWithFormat:@"%ld张",albums.totalCount];
+    _lblAblumsPhotoNum.text = [NSString stringWithFormat:@"%ld张",(long)albums.totalCount];
 }
 
 - (void)layoutSubviews{

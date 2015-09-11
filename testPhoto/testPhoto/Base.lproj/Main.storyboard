@@ -42,6 +42,7 @@
                         <viewControllerLayoutGuide type="bottom" id="OiR-6P-Ypa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WQV-fl-GLd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend_add_img_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="iTS-gk-Tt5">
@@ -91,7 +92,7 @@
                         <outletCollection property="imageViews" destination="iTS-gk-Tt5" id="L5g-uR-RaB"/>
                         <outletCollection property="imageViews" destination="4Os-N1-ymc" id="WNw-UF-0Ys"/>
                         <outletCollection property="imageViews" destination="9FC-hp-9mC" id="Ilg-qR-SPP"/>
-                        <segue destination="XEr-l8-H9j" kind="show" identifier="toImagesSegue" id="d8k-T4-agH"/>
+                        <segue destination="XEr-l8-H9j" kind="presentation" identifier="toImagesSegue" id="d8k-T4-agH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izK-bd-ZHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -107,32 +108,13 @@
                         <viewControllerLayoutGuide type="bottom" id="FzG-cq-rqq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aof-GG-eiK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kbu-ft-qVs">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
-                                </variation>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Kbu-ft-qVs"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="Kbu-ft-qVs"/>
-                            </mask>
-                        </variation>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="scrollView" destination="Kbu-ft-qVs" id="eq5-I7-jRb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPG-wa-pkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

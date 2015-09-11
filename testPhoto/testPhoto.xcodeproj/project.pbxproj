@@ -15,6 +15,9 @@
 		3D0801631B9FC5F200651252 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0801611B9FC5F200651252 /* LaunchScreen.xib */; };
 		3D08016F1B9FC5F200651252 /* testPhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D08016E1B9FC5F200651252 /* testPhotoTests.m */; };
 		3D4A68D91BA2A1C60019FBBF /* PGAssetPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A68D81BA2A1C60019FBBF /* PGAssetPickerModel.m */; };
+		3D4A68DC1BA2C9CC0019FBBF /* icon_del_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4A68DA1BA2C9CC0019FBBF /* icon_del_h.png */; };
+		3D4A68DD1BA2C9CC0019FBBF /* icon_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4A68DB1BA2C9CC0019FBBF /* icon_del.png */; };
+		3D4A68E01BA2F1780019FBBF /* PGZoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A68DF1BA2F1780019FBBF /* PGZoomImageView.m */; };
 		3DAD1C3C1BA11370006FF49E /* PGAlbums.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD1C3B1BA11370006FF49E /* PGAlbums.m */; };
 		3DAD1C3F1BA116F5006FF49E /* PGAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD1C3E1BA116F5006FF49E /* PGAsset.m */; };
 		3DAD1C411BA12D59006FF49E /* PGAssetsPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DAD1C401BA12D59006FF49E /* PGAssetsPickerController.xib */; };
@@ -66,6 +69,10 @@
 		3D08016E1B9FC5F200651252 /* testPhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testPhotoTests.m; sourceTree = "<group>"; };
 		3D4A68D71BA2A1C60019FBBF /* PGAssetPickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAssetPickerModel.h; sourceTree = "<group>"; };
 		3D4A68D81BA2A1C60019FBBF /* PGAssetPickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAssetPickerModel.m; sourceTree = "<group>"; };
+		3D4A68DA1BA2C9CC0019FBBF /* icon_del_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_del_h.png; sourceTree = "<group>"; };
+		3D4A68DB1BA2C9CC0019FBBF /* icon_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_del.png; sourceTree = "<group>"; };
+		3D4A68DE1BA2F1780019FBBF /* PGZoomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGZoomImageView.h; sourceTree = "<group>"; };
+		3D4A68DF1BA2F1780019FBBF /* PGZoomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGZoomImageView.m; sourceTree = "<group>"; };
 		3DAD1C3A1BA11370006FF49E /* PGAlbums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAlbums.h; sourceTree = "<group>"; };
 		3DAD1C3B1BA11370006FF49E /* PGAlbums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAlbums.m; sourceTree = "<group>"; };
 		3DAD1C3D1BA116F5006FF49E /* PGAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAsset.h; sourceTree = "<group>"; };
@@ -222,6 +229,8 @@
 				3DE395AF1BA000A10086AE7C /* WPSViewController.m */,
 				3DE395B61BA00DBB0086AE7C /* ImagesViewController.h */,
 				3DE395B71BA00DBB0086AE7C /* ImagesViewController.m */,
+				3D4A68DE1BA2F1780019FBBF /* PGZoomImageView.h */,
+				3D4A68DF1BA2F1780019FBBF /* PGZoomImageView.m */,
 			);
 			name = WPS;
 			sourceTree = "<group>";
@@ -229,6 +238,8 @@
 		3DE395B21BA002990086AE7C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3D4A68DA1BA2C9CC0019FBBF /* icon_del_h.png */,
+				3D4A68DB1BA2C9CC0019FBBF /* icon_del.png */,
 				3DE395BF1BA044CC0086AE7C /* top_bar_big.png */,
 				3DE395C11BA045970086AE7C /* back_image.png */,
 				3DE395B31BA002990086AE7C /* WPS */,
@@ -354,9 +365,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D4A68DC1BA2C9CC0019FBBF /* icon_del_h.png in Resources */,
 				3D08015E1B9FC5F200651252 /* Main.storyboard in Resources */,
 				3D0801631B9FC5F200651252 /* LaunchScreen.xib in Resources */,
 				3DE395D71BA0654B0086AE7C /* UzysAssetPickerController.bundle in Resources */,
+				3D4A68DD1BA2C9CC0019FBBF /* icon_del.png in Resources */,
 				3DE395C21BA045970086AE7C /* back_image.png in Resources */,
 				3DE395C01BA044CC0086AE7C /* top_bar_big.png in Resources */,
 				3DE395B51BA002990086AE7C /* friend_add_img_icon.png in Resources */,
@@ -397,6 +410,7 @@
 				3DAD1C4D1BA12FCB006FF49E /* PGAssetsViewCell.m in Sources */,
 				3D0801551B9FC5F200651252 /* main.m in Sources */,
 				3DE395D51BA0642D0086AE7C /* UzysAssetsViewCell.m in Sources */,
+				3D4A68E01BA2F1780019FBBF /* PGZoomImageView.m in Sources */,
 				3DE395CC1BA04E610086AE7C /* LvGroupPickerView.m in Sources */,
 				3DE395BE1BA042E60086AE7C /* LvAssetsPickerController.m in Sources */,
 			);
