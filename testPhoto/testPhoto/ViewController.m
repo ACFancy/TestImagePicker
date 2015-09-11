@@ -123,7 +123,9 @@
 
 #pragma mark - UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    _fromPhotArray = [NSMutableArray array];
+    if (_fromPhotArray.count) {
+        [_fromPhotArray removeAllObjects];
+    }
     [picker dismissViewControllerAnimated:YES completion:nil];
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([mediaType isEqualToString:@"public.image"]) {
@@ -247,6 +249,7 @@
 
 #pragma mark - PGAssetPickerController Delegate
 - (void)PGAssetsPickerController:(PGAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+    _selectedImage = nil;
     if (assets.count > 0) {
         _fromPhotArray = [NSMutableArray array];
         for (PGAsset *temAsset in assets) {
