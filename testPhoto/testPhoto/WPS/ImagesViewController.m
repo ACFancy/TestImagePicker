@@ -8,6 +8,7 @@
 
 #import "ImagesViewController.h"
 #import "PGZoomImageView.h"
+#import "UIButton+BackColor.h"
 
 #define SCREEN_WIDTH    [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT    [UIScreen mainScreen].bounds.size.height
@@ -20,6 +21,9 @@
     UIButton *_deleteBtn;
     UIView *_btnBackView;
     UIScrollView *_scrollView;
+    UIControl *_overLayout;
+    UIView *_deletePhotoView;
+    int originCount;
     
 }
 @end
@@ -29,11 +33,20 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    
     [self initLayout];
+    
+    [self initUILayout];
+    
+    [self initDeletePhotoView];
 }
 
 
+
 - (void)initLayout{
+    
+    originCount = (int)_sourceImages.count;
     
     CGFloat scrollView_Y = 40;
     CGFloat scrollView_X = 0;
@@ -52,30 +65,10 @@
     if (_sourceImages.count > 0) {
         [_scrollView setContentSize:CGSizeMake(scrollView_W * _sourceImages.count, scrollView_H)];
     }
-
-    //图片
-    scrollView_W = _scrollView.frame.size.width;
-    scrollView_H = _scrollView.frame.size.height;
+    
+    //建立预览图
+    [self setUpPreviewBrowserWithAnimate:NO];
    
-    int index =0;
-    for (UIImage *image in _sourceImages) {
-        
-        CGRect pgZoomViewFrame =  CGRectMake(index*scrollView_W, 0, scrollView_W, scrollView_H);
-        PGZoomImageView *imageView = [[PGZoomImageView alloc] initWithFrame:pgZoomViewFrame];
-        imageView.tag = index+201;
-        imageView.image = image;
-        UITapGestureRecognizer *tapImg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
-        tapImg.numberOfTapsRequired = 1;
-        tapImg.numberOfTouchesRequired = 1;
-        
-        [imageView addGestureRecognizer:tapImg];
-        
-        [_scrollView addSubview:imageView];
-        ++index;
-    }
-    
-    
-    [_scrollView scrollRectToVisible:CGRectMake(((_currentIndex * scrollView_W)), 0, scrollView_W, scrollView_H) animated:NO];
     
     //当前图片位置背景
     CGFloat lblBackView_HW = 30;
@@ -127,6 +120,119 @@
     
 }
 
+//建立预览图
+- (void)setUpPreviewBrowserWithAnimate:(BOOL)animate{
+    //
+    if (_scrollView) {
+        if (_scrollView.subviews.count > 0) {
+            for (UIView *view in _scrollView.subviews) {
+                [view removeFromSuperview];
+            }
+        }
+    }
+    
+    CGFloat scrollView_W = _scrollView.frame.size.width;
+    CGFloat scrollView_H = _scrollView.frame.size.height;
+    
+    int index =0;
+    for (UIImage *image in _sourceImages) {
+        
+        CGRect pgZoomViewFrame =  CGRectMake(index*scrollView_W, 0, scrollView_W, scrollView_H);
+        PGZoomImageView *imageView = [[PGZoomImageView alloc] initWithFrame:pgZoomViewFrame];
+        imageView.tag = index+201;
+        imageView.image = image;
+        UITapGestureRecognizer *tapImg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+        tapImg.numberOfTapsRequired = 1;
+        tapImg.numberOfTouchesRequired = 1;
+        
+        [imageView addGestureRecognizer:tapImg];
+        
+        [_scrollView addSubview:imageView];
+        ++index;
+    }
+    
+    
+    [_scrollView scrollRectToVisible:CGRectMake(((_currentIndex * scrollView_W)), 0, scrollView_W, scrollView_H) animated:YES];
+}
+
+
+- (void)initUILayout{
+    _overLayout = [[UIControl alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _overLayout.backgroundColor = COLOR(.16, .17, .21, .5);
+    [_overLayout addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)initDeletePhotoView{
+    
+    //背景
+    _deletePhotoView = [[UIView alloc] init];
+    CGFloat deletePhotoView_H = 126;
+    CGFloat deletePhotoView_W = [UIScreen mainScreen].bounds.size.width - 10;
+    CGFloat deletePhotoView_Y = self.view.frame.size.height;
+    CGFloat deletePhotoView_X = 5;
+    
+    _deletePhotoView.frame = CGRectMake(deletePhotoView_X  , deletePhotoView_Y ,deletePhotoView_W  , deletePhotoView_H);
+    _deletePhotoView.backgroundColor = [UIColor clearColor];
+    _deletePhotoView.layer.cornerRadius = 3.0f;
+    _deletePhotoView.layer.masksToBounds = YES;
+    
+    //删除标题提示语
+    CGFloat deletePhotoTip_H = 40;
+    CGFloat deletePhotoTip_W = deletePhotoView_W;
+    CGFloat deletePhotoTip_Y = 0;
+    CGFloat deletePhotoTip_X = 0;
+    UILabel *lbldeletePhotoTip = [[UILabel alloc] init];
+    lbldeletePhotoTip.frame = CGRectMake(deletePhotoTip_X, deletePhotoTip_Y, deletePhotoTip_W, deletePhotoTip_H);
+    lbldeletePhotoTip.font = [UIFont systemFontOfSize:12];
+    lbldeletePhotoTip.textColor =  COLOR(160 , 160, 160, 1);
+    lbldeletePhotoTip.backgroundColor = COLOR(255, 255, 255, 1);
+    lbldeletePhotoTip.textAlignment = NSTextAlignmentCenter;
+    lbldeletePhotoTip.text = @"要删除这张图片吗？";
+    
+    [_deletePhotoView addSubview:lbldeletePhotoTip];
+    
+    //中间一个间隙
+    CGFloat line_X = deletePhotoTip_X;
+    CGFloat line_Y = deletePhotoTip_Y + deletePhotoTip_H;
+    CGFloat line_W = deletePhotoView_W;
+    CGFloat line_H = 1;
+    UIView *lineView = [[UIView alloc] init];
+    lineView.frame = CGRectMake(line_X, line_Y, line_W, line_H);
+    lineView.backgroundColor = COLOR(238, 238, 238, 1);
+    [_deletePhotoView addSubview:lineView];
+    
+    //删除按钮
+    CGFloat deletePhotoBtn_H = deletePhotoTip_H;
+    CGFloat deletePhotoBtn_W = deletePhotoView_W;
+    CGFloat deletePhotoBtn_Y = line_Y + line_H;
+    CGFloat deletePhotoBtn_X = line_X;
+    UIButton *deletePhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    deletePhotoBtn.frame = CGRectMake(deletePhotoBtn_X, deletePhotoBtn_Y, deletePhotoBtn_W, deletePhotoBtn_H);
+    deletePhotoBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [deletePhotoBtn setBackgroundColor:COLOR(255, 255, 255, 1) forState:UIControlStateNormal];
+    [deletePhotoBtn setBackgroundColor:COLOR(220, 220, 220, 1) forState:UIControlStateHighlighted];
+    [deletePhotoBtn setTitleColor:COLOR(84, 84, 84, 1) forState:UIControlStateNormal];
+    [deletePhotoBtn setTitle:@"删除" forState:UIControlStateNormal];
+    [deletePhotoBtn addTarget:self action:@selector(deletePhotoAction) forControlEvents:UIControlEventTouchUpInside];
+    [_deletePhotoView addSubview:deletePhotoBtn];
+    
+    //取消按钮
+    CGFloat cancleBtn_Y = deletePhotoBtn_Y + deletePhotoBtn_H + 5;
+    CGFloat cancelBtn_X = deletePhotoBtn_X;
+    CGFloat cancelBtn_W = deletePhotoView_W;
+    CGFloat cancelBtn_H = deletePhotoTip_H;
+    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancelBtn.frame = CGRectMake(cancelBtn_X, cancleBtn_Y, cancelBtn_W, cancelBtn_H);
+    cancelBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [cancelBtn setBackgroundColor:COLOR(255, 255, 255, 1) forState:UIControlStateNormal];
+    [cancelBtn setBackgroundColor:COLOR(220, 220, 220, 1) forState:UIControlStateHighlighted];
+    [cancelBtn setTitleColor:COLOR(84, 84, 84, 1) forState:UIControlStateNormal];
+    [cancelBtn setTitle:@"取 消" forState:UIControlStateNormal];
+    [cancelBtn addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
+    [_deletePhotoView addSubview:cancelBtn];
+    
+}
+
 #pragma mark - UIScrollView Delegate
 static int lastIndex = 201;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -142,6 +248,8 @@ static int lastIndex = 201;
 
 - (void)dealWithZoomScaleWithScrollView:(UIScrollView *)scrollView{
     int index = (scrollView.contentOffset.x)/SCREEN_WIDTH;
+    _currentIndex = index;
+    _lblCurrentNumOfImage.text = [NSString stringWithFormat:@"%d/%d",_currentIndex+1,(int)_sourceImages.count];
     if (index <0 || index>=_sourceImages.count) {
         return;
     }
@@ -150,18 +258,98 @@ static int lastIndex = 201;
         if (zoomView.overScrollView.zoomScale > 1.0) {
             zoomView.overScrollView.zoomScale = 1.0;
         }
+    }
+    
+    lastIndex = 201+index;
+    
+    if (lastIndex == (_sourceImages.count -1)) {
+        PGZoomImageView *zoomView = (PGZoomImageView *)[_scrollView viewWithTag:lastIndex];
+        if (zoomView.overScrollView.zoomScale > 1.0) {
+            zoomView.overScrollView.zoomScale = 1.0;
+        }
         lastIndex = 201+index;
     }
-
 }
 
 #pragma mark Action
+- (void)dismiss{
+    if (_overLayout) {
+        [_overLayout removeFromSuperview];
+    }
+    
+    if (_deletePhotoView) {
+        
+        [UIView animateWithDuration:0.5f animations:^{
+            CGRect originTakePhotoFrame = _deletePhotoView.frame;
+            originTakePhotoFrame.origin.y += originTakePhotoFrame.size.height+5;
+            _deletePhotoView.frame = originTakePhotoFrame;
+        } completion:^(BOOL finished) {
+            [_deletePhotoView removeFromSuperview];
+        }];
+    }
+}
+
+
 - (void)tapAction{
+    if (originCount != (_sourceImages.count)) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(updateUIWithSoureImages:)]) {
+            [self.delegate updateUIWithSoureImages:_sourceImages];
+        }
+    }
+     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)deleteAction:(UIButton *)btn{
-   
+    UIWindow *keywindow = [UIApplication sharedApplication].keyWindow;
+    [keywindow addSubview:_overLayout];
+    [keywindow addSubview:_deletePhotoView];
+    [UIView animateWithDuration:0.5f animations:^{
+        CGRect newTakePhotoViewFrame = _deletePhotoView.frame;
+        newTakePhotoViewFrame.origin.y -= newTakePhotoViewFrame.size.height+5;
+        _deletePhotoView.frame = newTakePhotoViewFrame;
+    }];
+
+}
+
+- (void)deletePhotoAction{
+    [self dismiss];
+    switch (_currentIndex) {
+        case 0:
+            _currentIndex = 0;
+            [_sourceImages removeObjectAtIndex:0];
+            if (_sourceImages.count == 0) {
+                _lblCurrentNumOfImage.text = @"";
+                if (self.delegate && [self.delegate respondsToSelector:@selector(updateUIWithSoureImages:)]) {
+                    [self.delegate updateUIWithSoureImages:_sourceImages];
+                }
+                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            break;
+        case 1:
+            _currentIndex = 1;            //一共有三张图片
+            if (_sourceImages.count == 2) {//一共只有两张图片
+                _currentIndex = 0;
+            }
+            [_sourceImages removeObjectAtIndex:1];
+            break;
+        case 2:
+            _currentIndex = 1;
+             [_sourceImages removeObjectAtIndex:2];
+            break;
+        default:
+            break;
+    }
+    
+    _lblCurrentNumOfImage.text = [NSString stringWithFormat:@"%d/%d",_currentIndex+1,(int)_sourceImages.count];
+    _scrollView.contentSize = CGSizeMake(_sourceImages.count * SCREEN_WIDTH, _scrollView.frame.size.height);
+    [self setUpPreviewBrowserWithAnimate:YES];
+}
+
+//取消
+- (void)cancelAction{
+    [self dismiss];
 }
 
 @end

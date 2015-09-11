@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ImageViewControllerDelegate <NSObject>
+
+@optional
+- (void)updateUIWithSoureImages:(NSMutableArray *)sourceImages;
+
+@end
+
 @interface ImagesViewController : UIViewController
 
 
 @property (nonatomic, strong) NSMutableArray *sourceImages;
 @property (nonatomic, assign) int currentIndex;
+@property (nonatomic, weak)id<ImageViewControllerDelegate>delegate;
 
 @end

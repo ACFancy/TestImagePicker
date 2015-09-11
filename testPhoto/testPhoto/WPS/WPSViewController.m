@@ -11,9 +11,12 @@
 #import  <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "ImagesViewController.h"
+#import "PGAssetsPickerController.h"
+#import "PGAsset.h"
 #define COLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define kCANCELEDITTAG 2015
 
-@interface WPSViewController (){
+@interface WPSViewController ()<ImageViewControllerDelegate,PGAssetsPickerControllerDelegate,UIAlertViewDelegate>{
     NSMutableArray *realImageArray;
     UIControl *_overLayout;
     UIView *_takePhotoView;
@@ -174,9 +177,28 @@
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([mediaType isEqualToString:@"public.image"]) {
         _selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [_sourceimages addObject:_selectedImage];
+        [self initLayouts];
     }else{
         return;
     }
+
+}
+
+#pragma mark - PGAssetsPickerController
+- (void)PGAssetsPickerController:(PGAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+    if (assets.count > 0) {
+        for (PGAsset *tempAsset in assets) {
+            [_sourceimages addObject:tempAsset.fullResolutionImage];
+        }
+        [self initLayouts];
+    }
+}
+
+#pragma mark - ImagesViewControllerDelegate
+- (void)updateUIWithSoureImages:(NSMutableArray *)sourceImages{
+    _sourceimages = [NSMutableArray arrayWithArray:sourceImages];
+    [self initLayouts];
 }
 
 #pragma mark - Navigation
@@ -186,6 +208,14 @@
         ImagesViewController *imgVC = (ImagesViewController *)segue.destinationViewController;
         imgVC.sourceImages = _sourceimages;
         imgVC.currentIndex = [indexNum intValue];
+        imgVC.delegate = self;
+    }
+}
+
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -252,11 +282,9 @@
 //从相机中选择
 - (void)fromPhotoAction{
     [self dismiss];
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.delegate = (id)self;
-    picker.allowsEditing = NO;
-    
+    PGAssetsPickerController *picker = [[PGAssetsPickerController alloc] init];
+    picker.maxinumNumberOfSelectionPhoto = 3 - _sourceimages.count;
+    picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
 }
 
@@ -286,7 +314,10 @@
 }
 
 - (IBAction)backAction:(UIBarButtonItem *)sender {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"退出此次编辑？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"退出", nil];
+    alertView.tag = kCANCELEDITTAG;
+    [alertView show];
     
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
