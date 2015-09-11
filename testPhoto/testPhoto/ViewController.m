@@ -13,6 +13,7 @@
 #import "WPS/WPSViewController.h"
 #import "LvAssetsPickerController.h"
 #import "PGAssetsPickerController.h"
+#import "PGAsset.h"
 
 #define COLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
@@ -20,6 +21,7 @@
     UIControl *_overLayout;
     UIView *_takePhotoView;
     UIImage *_selectedImage;
+    NSMutableArray *_fromPhotArray;
 }
 @end
 
@@ -121,6 +123,7 @@
 
 #pragma mark - UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    _fromPhotArray = [NSMutableArray array];
     [picker dismissViewControllerAnimated:YES completion:nil];
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([mediaType isEqualToString:@"public.image"]) {
@@ -140,6 +143,11 @@
         }else{
             wpsVC.sourceimages = [NSMutableArray array];
         }
+        
+        if (_fromPhotArray.count) {
+            [wpsVC.sourceimages addObjectsFromArray:_fromPhotArray];
+        }
+        
     }
 }
 
@@ -239,7 +247,13 @@
 
 #pragma mark - PGAssetPickerController Delegate
 - (void)PGAssetsPickerController:(PGAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
-    NSLog(@"YES");
+    if (assets.count > 0) {
+        _fromPhotArray = [NSMutableArray array];
+        for (PGAsset *temAsset in assets) {
+            [_fromPhotArray addObject:temAsset.fullResolutionImage];
+        }
+        [self performSelector:@selector(jumpToPublishViewController) withObject:nil afterDelay:1.2f];
+    }
 }
 
 //取消

@@ -41,17 +41,32 @@
         tap.numberOfTouchesRequired = 1;
         imgView.contentMode = UIViewContentModeScaleToFill;
         imgView.userInteractionEnabled = YES;
-        if (imgView.tag == 101) {
+        if (imgView.tag == 101) { //必须选一张
             imgView.hidden = NO;
             imgView.image = _sourceimages[0];
         }else if(imgView.tag == 102){
-            tapSelector = @selector(choosePhotoAction);
-            [tap addTarget:self action:tapSelector];
-            [imgView addGestureRecognizer:tap];
-            imgView.hidden = NO;
+            if (_sourceimages.count > 1) {  //选了一张以上图片
+                imgView.hidden = NO;
+                imgView.image = _sourceimages[1];
+            }else{         //选了一张图片
+                tapSelector = @selector(choosePhotoAction);
+                [tap addTarget:self action:tapSelector];
+                [imgView addGestureRecognizer:tap];
+                imgView.hidden = NO;
+            }
            
         }else{
-          imgView.hidden = YES;
+            if (_sourceimages.count > 2) { //选了三张图片
+                imgView.hidden = NO;
+                imgView.image = _sourceimages[2];
+            }else if(_sourceimages.count == 2){ //选了两张图片
+                tapSelector = @selector(choosePhotoAction);
+                [tap addTarget:self action:tapSelector];
+                [imgView addGestureRecognizer:tap];
+                imgView.hidden = NO;
+            }else{                       //选了一张或更少图片
+                imgView.hidden = YES;
+            }
         }
        
     }
