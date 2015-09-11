@@ -14,6 +14,7 @@
 		3D0801601B9FC5F200651252 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D08015F1B9FC5F200651252 /* Images.xcassets */; };
 		3D0801631B9FC5F200651252 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0801611B9FC5F200651252 /* LaunchScreen.xib */; };
 		3D08016F1B9FC5F200651252 /* testPhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D08016E1B9FC5F200651252 /* testPhotoTests.m */; };
+		3D4A68D91BA2A1C60019FBBF /* PGAssetPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A68D81BA2A1C60019FBBF /* PGAssetPickerModel.m */; };
 		3DAD1C3C1BA11370006FF49E /* PGAlbums.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD1C3B1BA11370006FF49E /* PGAlbums.m */; };
 		3DAD1C3F1BA116F5006FF49E /* PGAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD1C3E1BA116F5006FF49E /* PGAsset.m */; };
 		3DAD1C411BA12D59006FF49E /* PGAssetsPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DAD1C401BA12D59006FF49E /* PGAssetsPickerController.xib */; };
@@ -63,6 +64,8 @@
 		3D0801681B9FC5F200651252 /* testPhotoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testPhotoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D08016D1B9FC5F200651252 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D08016E1B9FC5F200651252 /* testPhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testPhotoTests.m; sourceTree = "<group>"; };
+		3D4A68D71BA2A1C60019FBBF /* PGAssetPickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAssetPickerModel.h; sourceTree = "<group>"; };
+		3D4A68D81BA2A1C60019FBBF /* PGAssetPickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAssetPickerModel.m; sourceTree = "<group>"; };
 		3DAD1C3A1BA11370006FF49E /* PGAlbums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAlbums.h; sourceTree = "<group>"; };
 		3DAD1C3B1BA11370006FF49E /* PGAlbums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGAlbums.m; sourceTree = "<group>"; };
 		3DAD1C3D1BA116F5006FF49E /* PGAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGAsset.h; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				3DAD1C3B1BA11370006FF49E /* PGAlbums.m */,
 				3DAD1C3D1BA116F5006FF49E /* PGAsset.h */,
 				3DAD1C3E1BA116F5006FF49E /* PGAsset.m */,
+				3D4A68D71BA2A1C60019FBBF /* PGAssetPickerModel.h */,
+				3D4A68D81BA2A1C60019FBBF /* PGAssetPickerModel.m */,
 				3DAD1C421BA12DB5006FF49E /* PGAssetsPickerController.h */,
 				3DAD1C431BA12DB5006FF49E /* PGAssetsPickerController.m */,
 				3DAD1C401BA12D59006FF49E /* PGAssetsPickerController.xib */,
@@ -379,6 +384,7 @@
 				3DAD1C3C1BA11370006FF49E /* PGAlbums.m in Sources */,
 				3DAD1C441BA12DB5006FF49E /* PGAssetsPickerController.m in Sources */,
 				3DE395AD1B9FD4A10086AE7C /* UIButton+BackColor.m in Sources */,
+				3D4A68D91BA2A1C60019FBBF /* PGAssetPickerModel.m in Sources */,
 				3D08015B1B9FC5F200651252 /* ViewController.m in Sources */,
 				3DE395CF1BA04F370086AE7C /* LvGroupViewCell.m in Sources */,
 				3DE395D21BA0571F0086AE7C /* LvWrapperPickerController.m in Sources */,

@@ -13,6 +13,7 @@
 - (instancetype)initWithAssetsGroup:(ALAssetsGroup *)aGroup{
     if (self = [super init]) {
         self.assetsGroup = aGroup;
+        self.assetsArray = [NSMutableArray array];
     }
     return self;
 }

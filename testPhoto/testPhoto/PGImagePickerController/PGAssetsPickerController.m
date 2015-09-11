@@ -11,13 +11,16 @@
 #import "PGGroupPikcerView.h"
 #import "PGAlbums.h"
 #import "UIButton+BackColor.h"
+#import "PGAssetPickerModel.h"
 
 #define kThumbnailSize      CGSizeMake(kThumbnailLength, kThumbnailLength)
 #define kAssetsViewCellIdentifier           @"PGAssetsViewCellIdentifier"
 #define Color(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 typedef void (^voidBlock)(void);
 
-@interface PGAssetsPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UINavigationControllerDelegate,PGGroupPickerViewDelegate>
+@interface PGAssetsPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UINavigationControllerDelegate,PGGroupPickerViewDelegate>{
+    NSMutableArray *selectedArray;
+}
 @property (weak, nonatomic) IBOutlet UIButton *btnTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *imageTitleView;
 @property (weak, nonatomic) IBOutlet UIView *navigationTopView;
@@ -57,6 +60,7 @@ typedef void (^voidBlock)(void);
 - (instancetype)init{
     self = [super initWithNibName:@"PGAssetsPickerController" bundle:nil];
     if (self) {
+        self.view.translatesAutoresizingMaskIntoConstraints = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(assetsLibraryUpdated:) name:ALAssetsLibraryChangedNotification object:nil];
     }
     return self;
@@ -83,6 +87,7 @@ typedef void (^voidBlock)(void);
 
 - (void)initVariable{
     self.assetsFilter = [ALAssetsFilter allPhotos];
+    selectedArray = [NSMutableArray array];
     self.maximumNumberOfSelection = self.maxinumNumberOfSelectionPhoto;
     self.view.clipsToBounds = YES;
 }
@@ -134,10 +139,16 @@ typedef void (^voidBlock)(void);
     self.assetsFilter = filter;
     PGAlbums *tempalbums = (PGAlbums *)self.groups[item];
     self.albums = tempalbums;
-    [self initAssets:nil];
+    if (self.albums.assetsArray.count<=0) {
+        [self initAssets:nil];
+    }else{
+        self.assets = [NSMutableArray arrayWithArray:self.albums.assetsArray];
+    }
+    
     [self.groupPickerView.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:item inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     [self.groupPickerView dismiss:YES];
     [self menuArrowRotate];
+    [self reloadData];
 }
 
 - (void)menuArrowRotate{
@@ -162,6 +173,7 @@ typedef void (^voidBlock)(void);
         PGAlbums *tempAblums = (PGAlbums *)self.groups[0];
         self.albums = tempAblums;
     }
+    
     [self.albums setFilter:self.assetsFilter];
     NSInteger assetCount = self.albums.totalCount;
     ALAssetsGroupEnumerationResultsBlock resultsBlock = ^(ALAsset *asset,NSUInteger index, BOOL *stop){
@@ -190,11 +202,33 @@ typedef void (^voidBlock)(void);
 
 - (void)reloadData{
     [self.collectionView reloadData];
-    [self.btnDone setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)self.collectionView.indexPathsForSelectedItems.count] forState:UIControlStateNormal];
+    if (selectedArray.count) {
+        for (PGAssetPickerModel *model in selectedArray) {
+            int i = 0;
+            for (PGAsset *temAset in self.assets) {
+                PGAssetPickerModel *temM = [[PGAssetPickerModel alloc] init];
+                temM.albumsName = self.albums.name;
+                temM.photoName = temAset.fileName;
+                if ([model isEqual:temM]) {
+                    temAset.selected = model.selected;
+                    if (model.selected) {
+                        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+                    }
+                }
+                i++;
+            }
+        }
+    }
+    [self setAssetsCount];
 }
 
-- (void)setAssetsCountWithSelectedIndexPaths:(NSArray *)indexPaths{
-    [self.btnDone setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)indexPaths.count] forState:UIControlStateNormal];
+- (void)setAssetsCount{
+    if (selectedArray.count) {
+            [self.btnDone setTitle:[NSString stringWithFormat:@"完成( %lu )",selectedArray.count] forState:UIControlStateNormal];
+    }else{
+        [self.btnDone setTitle:@"完成" forState:UIControlStateNormal];
+    }
+
 }
 
 #pragma mark - Notification
@@ -227,7 +261,7 @@ typedef void (^voidBlock)(void);
                         if ([[[tempAsset.containAsset valueForKey:ALAssetPropertyAssetURL] absoluteString] isEqualToString:[[asset valueForKey:ALAssetPropertyAssetURL] absoluteString]]) {
                             NSIndexPath *newPath = [NSIndexPath indexPathForRow:0 inSection:0];
                             [self.collectionView selectItemAtIndexPath:newPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-                            [self setAssetsCountWithSelectedIndexPaths:self.collectionView.indexPathsForSelectedItems];
+                            [self setAssetsCount];
                         }
                     });
                 } failureBlock:nil];
@@ -253,7 +287,7 @@ typedef void (^voidBlock)(void);
                     }
                 }
                 
-                [self setAssetsCountWithSelectedIndexPaths:self.collectionView.indexPathsForSelectedItems];
+                [self setAssetsCount];
                 
                 if (self.assets.count > beforeAssets) {
                     [self.collectionView setContentOffset:CGPointMake(0, 0) animated:NO];
@@ -292,7 +326,6 @@ typedef void (^voidBlock)(void);
                 [weakSelf.groups insertObject:tempAlbums atIndex:0];
                 
                 if (doSetUpAsset) {
-                    PGAlbums *tempAlbums = [[PGAlbums alloc] initWithAssetsGroup:group];
                     weakSelf.albums = tempAlbums;
                     [weakSelf initAssets:nil];
                 }
@@ -301,6 +334,7 @@ typedef void (^voidBlock)(void);
                     PGAlbums *tempAlbums = [[PGAlbums alloc] initWithAssetsGroup:group];
                     weakSelf.albums = tempAlbums;
                     [weakSelf.groups addObject:tempAlbums];
+                    [weakSelf initAssets:nil];
                 }
             }
             
@@ -338,21 +372,73 @@ typedef void (^voidBlock)(void);
     static NSString *CellIdentifier = kAssetsViewCellIdentifier;
     PGAssetsViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    [cell applyData:[self.assets objectAtIndex:indexPath.row]];
+    PGAsset *tempAsset2 = (PGAsset *)[self.assets objectAtIndex:indexPath.row];
+    [cell applyData:tempAsset2];
     return cell;
 }
 
 #pragma mark - CollectionView Delegate
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    return [collectionView indexPathsForSelectedItems].count < self.maximumNumberOfSelection;
+    
+    if (selectedArray.count >= self.maxinumNumberOfSelectionPhoto) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"万万没想到" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }
+    return selectedArray.count < self.maxinumNumberOfSelectionPhoto;
+}
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
+    
+    PGAsset *tempAsset = (PGAsset *)self.assets[indexPath.row];
+    PGAssetPickerModel *pgModel = [[PGAssetPickerModel alloc] init];
+    pgModel.albumsName = self.albums.name;
+    pgModel.photoName = tempAsset.fileName;
+    pgModel.asset = tempAsset;
+    pgModel.selected = YES;
+    tempAsset.selected = YES;
+    if (selectedArray.count) {
+        BOOL flag = NO;
+        for (PGAssetPickerModel *temM in selectedArray) {
+            if ([temM isEqual:pgModel]) {
+                flag = YES;
+                break;
+            }
+        }
+        
+        if (!flag) {
+            [selectedArray addObject:pgModel];
+        }
+        
+    }else{
+        [selectedArray addObject:pgModel];
+    }
+    
+//    [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
+    PGAsset *tempAsset = (PGAsset *)self.assets[indexPath.row];
+    
+    PGAssetPickerModel *pgModel = [[PGAssetPickerModel alloc] init];
+    pgModel.albumsName = self.albums.name;
+    pgModel.photoName = tempAsset.fileName;
+    pgModel.asset = tempAsset;
+    pgModel.selected = NO;
+    tempAsset.selected = NO;
+    if (selectedArray.count) {
+
+        for (PGAssetPickerModel *temM in selectedArray) {
+            if ([temM isEqual:pgModel]) {
+                [selectedArray removeObject:temM];
+                break;
+            }
+        }
+    }
+    
+//    [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
 }
 
 #pragma mark - PGGroupPickerView Delegate
@@ -363,8 +449,8 @@ typedef void (^voidBlock)(void);
 #pragma mark - Private Method
 - (void)finishPickingAssets{
     NSMutableArray *tassets = [[NSMutableArray alloc] init];
-    for (NSIndexPath *indexPath in self.collectionView.indexPathsForSelectedItems) {
-        [tassets addObject:[self.assets objectAtIndex:indexPath.item]];
+    for (PGAssetPickerModel *model in selectedArray) {
+        [tassets addObject:model.asset];
     }
     
     if (tassets.count > 0) {

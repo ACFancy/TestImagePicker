@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PGAsset.h"
-#define kThumbnailLength    78.0f
+#define kThumbnailLength    ([UIScreen mainScreen].bounds.size.width-6)/4.0
 
 @interface PGAssetsViewCell : UICollectionViewCell
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -16,18 +16,24 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="eYW-zr-LJw">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oc9-sa-vYf" userLabel="NavigationTop">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="top_bar_big.png" translatesAutoresizingMaskIntoConstraints="NO" id="yrO-ho-Go1">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top_bar_big.png" translatesAutoresizingMaskIntoConstraints="NO" id="yrO-ho-Go1">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfv-3G-SHx" userLabel="Button-Close">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfv-3G-SHx" userLabel="Button-Close">
                             <rect key="frame" x="9" y="21" width="30" height="30"/>
                             <accessibility key="accessibilityConfiguration" label=""/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Kp5-ox-h62"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Qa4-mf-0uk"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Zag-Qm-hsa"/>
+                                <constraint firstAttribute="width" constant="30" id="tPW-yJ-wus"/>
+                            </constraints>
                             <state key="normal" backgroundImage="back_image.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -35,8 +41,11 @@
                                 <action selector="backAction:" destination="-1" eventType="touchUpInside" id="eGL-cY-QRa"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-Wb-UyN">
-                            <rect key="frame" x="76" y="21" width="168" height="30"/>
+                        <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-Wb-UyN">
+                            <rect key="frame" x="76" y="21" width="448" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="q8g-Wm-BHT"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="20"/>
                             <state key="normal" title="相机胶卷">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,20 +55,36 @@
                                 <action selector="btnTitleAction:" destination="-1" eventType="touchUpInside" id="z47-xf-jqs"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PGAssetPickerController.bundle/pg_icon_arrow_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="1bt-od-7vb">
-                            <rect key="frame" x="203" y="32" width="13" height="7"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PGAssetPickerController.bundle/pg_icon_arrow_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="1bt-od-7vb">
+                            <rect key="frame" x="483" y="32" width="13" height="7"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="13" id="I5Y-0Y-VWy"/>
+                                <constraint firstAttribute="height" constant="7" id="xQy-qH-jTX"/>
+                            </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="Nfv-3G-SHx" firstAttribute="leading" secondItem="Oc9-sa-vYf" secondAttribute="leading" constant="9" id="3aH-Kc-cTD"/>
                         <constraint firstAttribute="height" constant="64" id="4Ig-5t-hnt"/>
+                        <constraint firstItem="yrO-ho-Go1" firstAttribute="top" secondItem="Oc9-sa-vYf" secondAttribute="top" id="4b1-tk-N8m"/>
+                        <constraint firstItem="v0O-Wb-UyN" firstAttribute="leading" secondItem="Oc9-sa-vYf" secondAttribute="leading" constant="76" id="Ckq-66-Rwh"/>
+                        <constraint firstItem="yrO-ho-Go1" firstAttribute="leading" secondItem="Oc9-sa-vYf" secondAttribute="leading" id="HqB-8L-ud1"/>
+                        <constraint firstAttribute="trailing" secondItem="v0O-Wb-UyN" secondAttribute="trailing" constant="76" id="Ord-Cn-eq3"/>
+                        <constraint firstItem="v0O-Wb-UyN" firstAttribute="top" secondItem="Oc9-sa-vYf" secondAttribute="top" constant="21" id="WZO-3w-2hm"/>
+                        <constraint firstAttribute="trailing" secondItem="yrO-ho-Go1" secondAttribute="trailing" id="cM3-CD-otI"/>
+                        <constraint firstItem="Nfv-3G-SHx" firstAttribute="top" secondItem="Oc9-sa-vYf" secondAttribute="top" constant="21" id="mkF-Wg-bh6"/>
+                        <constraint firstAttribute="bottom" secondItem="v0O-Wb-UyN" secondAttribute="bottom" constant="13" id="ml9-0a-LrP"/>
+                        <constraint firstAttribute="bottom" secondItem="yrO-ho-Go1" secondAttribute="bottom" id="uyI-VS-Q7R"/>
+                        <constraint firstItem="1bt-od-7vb" firstAttribute="top" secondItem="Oc9-sa-vYf" secondAttribute="top" constant="32" id="wb6-hL-32s"/>
+                        <constraint firstAttribute="trailing" secondItem="1bt-od-7vb" secondAttribute="trailing" constant="104" id="zLB-x6-fKE"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dD-sj-AdH" userLabel="BottomView">
-                    <rect key="frame" x="0.0" y="529" width="320" height="39"/>
+                    <rect key="frame" x="0.0" y="561" width="600" height="39"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ula-L0-Hx0">
-                            <rect key="frame" x="0.0" y="1" width="320" height="38"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ula-L0-Hx0">
+                            <rect key="frame" x="0.0" y="1" width="600" height="38"/>
                             <state key="normal" title="完成( 2 )">
                                 <color key="titleColor" red="0.28627450980000002" green="0.29411764709999999" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,6 +97,10 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="39" id="5Mh-So-aQh"/>
+                        <constraint firstItem="Ula-L0-Hx0" firstAttribute="top" secondItem="9dD-sj-AdH" secondAttribute="top" constant="1" id="RpP-uB-GCY"/>
+                        <constraint firstAttribute="bottom" secondItem="Ula-L0-Hx0" secondAttribute="bottom" id="f64-lM-RoM"/>
+                        <constraint firstAttribute="trailing" secondItem="Ula-L0-Hx0" secondAttribute="trailing" id="kYZ-Yg-dVG"/>
+                        <constraint firstItem="Ula-L0-Hx0" firstAttribute="leading" secondItem="9dD-sj-AdH" secondAttribute="leading" id="ps2-BN-TFh"/>
                     </constraints>
                 </view>
             </subviews>
@@ -92,9 +121,4 @@
         <image name="back_image.png" width="60" height="60"/>
         <image name="top_bar_big.png" width="640" height="128"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
